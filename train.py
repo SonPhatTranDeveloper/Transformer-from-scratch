@@ -11,7 +11,7 @@ from datasets import TextDataset
 
 from utils.tokeniser import ENCODER
 
-from config import BATCH_SIZE, N_LAYERS, DEVICE, EPOCHS, LR, SEQ_LENGTH
+from config import BATCH_SIZE, N_LAYERS, DEVICE, EPOCHS, LR, SEQ_LENGTH, TEST_EPOCHS
 
 from models import LanguageModel
 
@@ -114,9 +114,12 @@ if __name__ == "__main__":
         print(f"EPOCH {epoch} - AVG LOSS: {round(average_loss, 5)}")
 
         # Check for evaluation
-        if epoch % 500 != 0:
+        if epoch % TEST_EPOCHS != 0:
             print("-" * 100)
             continue
+
+        # Empty cache
+        torch.cuda.empty_cache()
 
         # Turn on eval mode
         model.eval()
