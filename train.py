@@ -106,7 +106,7 @@ if __name__ == "__main__":
             optimiser.step()
 
             # Add to result
-            average_loss += loss.float()
+            average_loss += loss.detach().item()
             total_batches += 1
 
         # Calculate the average loss
