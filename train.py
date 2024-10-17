@@ -142,7 +142,7 @@ if __name__ == "__main__":
 
         # Calculate the average loss
         evaluation_loss = evaluation_loss / evaluation_batches
-        print(f"EPOCH {epoch} - TEST AVG LOSS: {round(evaluation_batches, 5)}")
+        print(f"EPOCH {epoch} - TEST AVG LOSS: {round(evaluation_loss, 5)}")
 
         # Generate
         prompt = "Chương 1"
