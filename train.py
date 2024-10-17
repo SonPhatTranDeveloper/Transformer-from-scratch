@@ -119,6 +119,9 @@ if __name__ == "__main__":
             print("-" * 100)
             continue
 
+        # Turn on eval mode
+        model.eval()
+
         # Perform evaluation
         evaluation_loss = 0.0
         evaluation_batches = 0
@@ -128,15 +131,8 @@ if __name__ == "__main__":
             inputs = inputs.to(DEVICE)
             targets = targets.to(DEVICE)
 
-            # Zero-out the gradient
-            optimiser.zero_grad()
-
             # Calculate the output
             loss, _ = model(inputs, targets)
-
-            # Back-propagation
-            loss.backward()
-            optimiser.step()
 
             # Add to result
             evaluation_loss += loss.float()
