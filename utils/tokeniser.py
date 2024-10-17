@@ -13,8 +13,8 @@ from utils.io import read_text
 warnings.filterwarnings('ignore')
 
 # Download NLTK
-import nltk
-nltk.download('punkt_tab')
+# import nltk
+# nltk.download('punkt_tab')
 
 
 def split(text: str) -> List[str]:
@@ -23,7 +23,17 @@ def split(text: str) -> List[str]:
     :param text: sentence to split
     :return: list of tokens
     """
-    return word_tokenize(text)
+    # Get the paragraph
+    paragraphs = [p for p in text.split('\n') if p]
+
+    # Get the result
+    result = []
+
+    for paragraph in paragraphs:
+        result += word_tokenize(paragraph)
+        result.append('\n')
+
+    return result
 
 
 class Tokeniser:
