@@ -32,8 +32,8 @@ class TextDataset(Dataset):
             y.append(tokens[i+1:i + seq_length + 1])
 
         # Convert to tensor
-        self.x = torch.tensor(x, dtype=torch.long)
-        self.y = torch.tensor(y, dtype=torch.long)
+        self.x = torch.tensor(x, dtype=torch.long, device='cpu')
+        self.y = torch.tensor(y, dtype=torch.long, device='cpu')
 
     def __len__(self):
         """
