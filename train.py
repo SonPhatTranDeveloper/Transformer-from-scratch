@@ -100,7 +100,6 @@ if __name__ == "__main__":
 
             # Calculate the output
             loss, _ = model(inputs, targets)
-            print(loss)
 
             # Back-propagation
             loss.backward()
