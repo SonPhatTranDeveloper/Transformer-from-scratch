@@ -137,7 +137,7 @@ if __name__ == "__main__":
             loss, _ = model(inputs, targets)
 
             # Add to result
-            evaluation_loss += loss.float()
+            evaluation_loss += loss.detach().item()
             evaluation_batches += 1
 
         # Calculate the average loss
