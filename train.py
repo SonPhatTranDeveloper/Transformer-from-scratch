@@ -146,7 +146,7 @@ if __name__ == "__main__":
 
         # Generate
         prompt = "Chương 1"
-        generated_text = generate(model, prompt, max_size=40)
+        generated_text = generate(model, prompt, max_size=100)
         print(f"GENERATED TEXT: {generated_text}")
 
         # Save model
