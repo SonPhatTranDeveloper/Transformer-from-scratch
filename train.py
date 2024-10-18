@@ -16,6 +16,10 @@ from config import BATCH_SIZE, N_LAYERS, DEVICE, EPOCHS, LR, SEQ_LENGTH, TEST_EP
 from models import LanguageModel
 
 
+# Set up the precision to increase performance
+torch.set_float32_matmul_precision("high")
+
+
 def generate(language_model: LanguageModel, prompt: str, max_size: int = 10_000, device = DEVICE) -> str:
     """
     Generate a sequence of text based on the initial prompt
@@ -77,6 +81,9 @@ if __name__ == "__main__":
     )
     model.to(DEVICE)
 
+    # Compile the model to improve the performance
+    model = torch.compile(model)
+
     # Create optimiser and loss function
     optimiser = optim.Adam(lr=LR, params=model.parameters())
 
@@ -99,7 +106,9 @@ if __name__ == "__main__":
             optimiser.zero_grad()
 
             # Calculate the output
-            loss, _ = model(inputs, targets)
+            # Run in mixed precision to improve performance
+            with torch.autocast(device_type=DEVICE, dtype=torch.bfloat16):
+                loss, _ = model(inputs, targets)
 
             # Back-propagation
             loss.backward()
@@ -134,7 +143,9 @@ if __name__ == "__main__":
             targets = targets.to(DEVICE)
 
             # Calculate the output
-            loss, _ = model(inputs, targets)
+            # Run in mixed precision to improve performance
+            with torch.autocast(device_type=DEVICE, dtype=torch.bfloat16):
+                loss, _ = model(inputs, targets)
 
             # Add to result
             evaluation_loss += loss.detach().item()
