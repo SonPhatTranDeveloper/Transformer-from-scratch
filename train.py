@@ -75,7 +75,7 @@ def generate(language_model: LanguageModel, prompt: str, max_size: int = 10_000,
 
 if __name__ == "__main__":
     # Create dataset
-    text_dataset = TextDataset("rawdata/kinh_van_hoa.txt")
+    text_dataset = TextDataset("rawdata/data.txt")
     train_dataset, test_dataset = random_split(text_dataset, [0.9, 0.1])
 
     # Create dataloader
