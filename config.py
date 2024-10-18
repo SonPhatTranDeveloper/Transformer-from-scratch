@@ -12,3 +12,4 @@ DEVICE_TYPE = "cuda" if torch.cuda.is_available() else "cpu"
 DEVICE = torch.device(DEVICE_TYPE)
 EPOCHS = 10
 TEST_EPOCHS = 1
+GENERATION_LENGTH = 10_000
