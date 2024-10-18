@@ -45,6 +45,9 @@ class LanguageModel(nn.Module):
         # Predict next token layer
         self.projection = nn.Linear(d_model, n_vocab)
 
+        # Use the same matrix for embedding and projection
+        self.embedding.weight = self.projection.weight
+
     def forward(self, x: torch.Tensor, targets: torch.Tensor = None):
         """
         x is the input vector of size (batch_size, seq_length)

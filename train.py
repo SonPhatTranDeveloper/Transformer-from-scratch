@@ -11,7 +11,15 @@ from datasets import TextDataset
 
 from utils.tokeniser import ENCODER
 
-from config import BATCH_SIZE, N_LAYERS, DEVICE, EPOCHS, LR, SEQ_LENGTH, TEST_EPOCHS
+from config import (
+    BATCH_SIZE,
+    N_LAYERS,
+    DEVICE, DEVICE_TYPE,
+    EPOCHS,
+    LR,
+    SEQ_LENGTH,
+    TEST_EPOCHS
+)
 
 from models import LanguageModel
 
@@ -107,7 +115,7 @@ if __name__ == "__main__":
 
             # Calculate the output
             # Run in mixed precision to improve performance
-            with torch.autocast(device_type=DEVICE, dtype=torch.bfloat16):
+            with torch.autocast(device_type=DEVICE_TYPE, dtype=torch.bfloat16):
                 loss, _ = model(inputs, targets)
 
             # Back-propagation
@@ -144,7 +152,7 @@ if __name__ == "__main__":
 
             # Calculate the output
             # Run in mixed precision to improve performance
-            with torch.autocast(device_type=DEVICE, dtype=torch.bfloat16):
+            with torch.autocast(device_type=DEVICE_TYPE, dtype=torch.bfloat16):
                 loss, _ = model(inputs, targets)
 
             # Add to result
