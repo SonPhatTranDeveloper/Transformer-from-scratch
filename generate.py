@@ -72,7 +72,7 @@ if __name__ == "__main__":
     print("Model loaded!")
 
     # Generate text
-    prompt = "Tập"
+    prompt = "Tiểu Long"
     text = generate(model, prompt, max_size=GENERATION_LENGTH)
 
     # Write to file
