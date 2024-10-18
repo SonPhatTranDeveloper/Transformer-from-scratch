@@ -40,7 +40,7 @@ class TextDataset(Dataset):
         Get the length of the dataset
         :return: the length of the dataset
         """
-        return self.x.shape[0]
+        return len(self.x)
 
     def __getitem__(self, index):
         return self.x[index], self.y[index]

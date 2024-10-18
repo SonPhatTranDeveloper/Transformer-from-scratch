@@ -82,6 +82,11 @@ if __name__ == "__main__":
     train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE)
     test_dataloader = DataLoader(test_dataset, batch_size=BATCH_SIZE)
 
+    # Display the size of training and test set
+    print(f"Size of training set: {len(train_dataset)}")
+    print(f"Size of test set: {len(test_dataset)}")
+    print()
+
     # Create model
     model = LanguageModel(
         n_layer=N_LAYERS,
@@ -164,8 +169,8 @@ if __name__ == "__main__":
         print(f"EPOCH {epoch} - TEST AVG LOSS: {round(evaluation_loss, 5)}")
 
         # Generate
-        prompt = "Chương 1"
-        generated_text = generate(model, prompt, max_size=100)
+        prompt = "Tập"
+        generated_text = generate(model, prompt, max_size=200)
         print(f"GENERATED TEXT: {generated_text}")
 
         # Save model
