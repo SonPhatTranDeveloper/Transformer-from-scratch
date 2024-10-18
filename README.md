@@ -61,5 +61,5 @@ The generated content will be saved in the ```result.txt``` file in the root dir
 - The model roughly follows GPT architecture, but there are some differences.
 - The implemented MultiHeadAttention is not an optimal implementation, we can replace it using batched Multi-head attention for faster processing (this will be done in future commits).
 - There are some tricks used to accelerate the training process:
-  - Mixed-precision floating numbers.
+  - Mixed-precision floating-point numbers.
   - Compiling the model using ```torch.compile```.
